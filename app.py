@@ -174,5 +174,5 @@ def process_media():
 if __name__ == '__main__':
     print("Iniciando servidor Audio Criativo...")
     print("Acesse http://localhost:5001 no seu navegador.")
-    port = int(os.environ.get("PORT", 5001))
+    port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
