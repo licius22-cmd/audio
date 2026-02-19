@@ -176,6 +176,10 @@ def process_media():
                     print(f"Warning: Could not remove temp file {f}: {cleanup_error}")
 
 if __name__ == '__main__':
-    print("Iniciando servidor Audio Criativo...")
-    print("Acesse http://localhost:5001 no seu navegador.")
-    app.run(debug=True, port=5001)
+    import os
+    # Pega a porta do Railway ou usa 5001 se estiver rodando local
+    port = int(os.environ.get("PORT", 5001))
+    
+    print(f"Iniciando servidor na porta {port}...")
+    # host="0.0.0.0" permite que o Railway acesse o container
+    app.run(host="0.0.0.0", port=port)
