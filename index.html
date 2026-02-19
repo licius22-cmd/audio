@@ -316,7 +316,7 @@
 
                 // Fallback message if server is not running
                 if (err.message.includes('Failed to fetch')) {
-                    alert("O servidor Python não parece estar rodando!\n\nCertifique-se de estar rodando './start.sh' no terminal.");
+                   alert("A conexão caiu. Isso acontece se o vídeo for muito grande ou o tempo de espera do navegador esgotar.");
                 } else {
                     alert("Ocorreu um erro: " + err.message);
                 }
