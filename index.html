@@ -284,8 +284,15 @@
                 // Monitor headers to see if it is video
                 const type = response.headers.get('content-type');
                 const isVideo = type && type.includes('video');
+
+                // Construct filename matches backend logic just in case browser uses this
+                // (Though 'Content-Disposition' header from backend usually overrides this)
+                const originalName = voiceInput.files[0].name;
+                const lastDotIndex = originalName.lastIndexOf('.');
+                const nameBase = lastDotIndex !== -1 ? originalName.substring(0, lastDotIndex) : originalName;
                 const ext = isVideo ? 'mp4' : 'wav';
-                downloadLink.download = `criativo_oculto_pronto.${ext}`;
+
+                downloadLink.download = `${nameBase} - new.${ext}`;
 
                 // Update download button text
                 const downloadBtn = downloadLink.querySelector('button');

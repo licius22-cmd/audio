@@ -124,6 +124,10 @@ def process_media():
         temp_files.append(processed_audio_path)
 
         # 4. OUTPUT GENERATION
+        # Extract name without extension and original extension
+        name_base, ext = os.path.splitext(filename)
+        new_filename = f"{name_base} - new{ext}"
+
         if is_video:
             # Remux audio into video
             new_audioclip = AudioFileClip(processed_audio_path)
@@ -143,7 +147,7 @@ def process_media():
                 output_video_path, 
                 mimetype="video/mp4", 
                 as_attachment=True, 
-                download_name=f"video_magico_{filename}"
+                download_name=new_filename
             )
         else:
             # Just return audio
@@ -154,7 +158,7 @@ def process_media():
                 output_io, 
                 mimetype="audio/wav", 
                 as_attachment=True, 
-                download_name=f"audio_magico_{os.path.splitext(filename)[0]}.wav"
+                download_name=new_filename
             )
 
     except Exception as e:
@@ -174,5 +178,4 @@ def process_media():
 if __name__ == '__main__':
     print("Iniciando servidor Audio Criativo...")
     print("Acesse http://localhost:5001 no seu navegador.")
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True, port=5001)
