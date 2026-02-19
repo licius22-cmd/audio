@@ -101,14 +101,15 @@ def process_media():
             final_video = video_clip.set_audio(new_audioclip)
             output_video_path = f"output_video_{unique_id}.mp4"
             
-            # LINHA ALTERADA: Usando 32 threads e preset rápido
+            # Otimização para 32 vCPUs e 32GB RAM
             final_video.write_videofile(
                 output_video_path, 
                 codec="libx264", 
                 audio_codec="aac", 
                 logger=None,
-                threads=32,       # Aproveita seu plano Railway
-                preset='ultrafast' # Renderização quase instantânea
+                threads=32,           # Usa todos os núcleos do seu plano
+                preset='ultrafast',    # Processamento instantâneo
+                ffmpeg_params=["-tune", "zerolatency"] # Ajuda a manter a conexão ativa
             )
             
             temp_files.append(output_video_path)
