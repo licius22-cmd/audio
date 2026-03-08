@@ -1,5 +1,4 @@
 flask
 pydub
 moviepy==1.0.3
-imageio-ffmpeg
-gunicorn
+waitress
