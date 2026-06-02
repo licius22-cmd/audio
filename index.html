@@ -66,7 +66,17 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                   
+                    <div class="text-sm text-blue-200/80 leading-relaxed">
+                        <strong class="text-blue-200">Efeito Automático:</strong>
+                        <ul class="list-disc ml-4 mt-1 space-y-1">
+                            <li><span class="text-white font-semibold">Canal Esquerdo:</span> Voz Invertida + Música
+                                Alta (100%)</li>
+                            <li><span class="text-white font-semibold">Canal Direito:</span> Voz Normal + Música Baixa
+                                (30%)</li>
+                        </ul>
+                        <p class="mt-2 text-blue-300 italic">Isso força o algoritmo mono a cancelar a voz, mas o cérebro
+                            humano ainda a percebe em estéreo.</p>
+                    </div>
                 </div>
             </div>
 
@@ -102,9 +112,47 @@
                             class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400">
                     </div>
 
-                   
+                    <div class="group relative">
+                        <label class="block text-sm font-medium text-slate-300 mb-2 ml-1">
+                            2. Arquivo de Ruído/Música (Opcional)
+                        </label>
+                        <p class="text-xs text-slate-500 mb-2 ml-1">Se não escolher, usará o
+                            <strong>background.mp3</strong> da pasta.
+                        </p>
+                        <div class="relative">
+                            <input type="file" id="noiseInput" accept="audio/*" class="block w-full text-sm text-slate-400
+                                file:mr-4 file:py-2.5 file:px-4
+                                file:rounded-lg file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-slate-700 file:text-slate-200
+                                hover:file:bg-slate-600
+                                cursor-pointer bg-slate-900/50 rounded-xl border border-slate-700 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all
+                            " />
+                        </div>
+                    </div>
 
-                   
+                    <!-- Advanced Music Controls (Collapsible or just visible for tweaking) -->
+                    <div class="bg-slate-900/30 rounded-xl p-4 border border-slate-700/50">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ajuste Fino da Música
+                            </h4>
+                            <button id="resetMusicParams"
+                                class="text-xs text-blue-400 hover:text-blue-300 underline">Restaurar Padrão</button>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-slate-500 mb-1">Música Esquerda (%)</label>
+                                <input type="number" id="musicVolLeft" value="100" min="0" max="200"
+                                    class="w-full bg-slate-800 border border-slate-600 rounded px-2 py-1 text-sm focus:border-purple-500 focus:outline-none text-center">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-slate-500 mb-1">Música Direita (%)</label>
+                                <input type="number" id="musicVolRight" value="30" min="0" max="200"
+                                    class="w-full bg-slate-800 border border-slate-600 rounded px-2 py-1 text-sm focus:border-purple-500 focus:outline-none text-center">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <button id="processBtn" disabled
